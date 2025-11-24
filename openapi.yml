@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Hello World API
+  description: 一个简单的 Hello World API 示例
+  version: 1.0.0
+  contact:
+    name: YanWan Team
+
+servers:
+  - url: http://localhost:8081/api
+    description: 本地开发服务器
+
+paths:
+  /hello:
+    get:
+      summary: Hello World
+      description: 返回 Hello World 问候消息
+      operationId: sayHello
+      tags:
+        - Hello
+      responses:
+        '200':
+          description: 成功返回问候消息
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+              example:
+                message: "Hello, World!"
+                timestamp: "2025-11-24T23:00:00Z"
+
+  /hello/{name}:
+    get:
+      summary: 个性化问候
+      description: 返回带有名字的个性化问候消息
+      operationId: sayHelloToName
+      tags:
+        - Hello
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: 要问候的名字
+          schema:
+            type: string
+            example: "张三"
+      responses:
+        '200':
+          description: 成功返回个性化问候消息
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+              example:
+                message: "Hello, 张三!"
+                timestamp: "2025-11-24T23:00:00Z"
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    HelloResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: 问候消息
+        timestamp:
+          type: string
+          format: date-time
+          description: 响应时间戳
+      required:
+        - message
+        - timestamp
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 错误码
+        message:
+          type: string
+          description: 错误信息
+      required:
+        - code
+        - message
+
+tags:
+  - name: Hello
+    description: Hello World 相关接口
