@@ -5,8 +5,8 @@ ___         __  __         ______            __
 /_/  |_\__,_/\__/_/ /_/     \____/\___/_/ /_/\__/\___/_/
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- 🔐 多架构统一鉴权服务        Version: ${application.version:1.0.0}
- 🚀 Spring Boot ${spring-boot.version}
- 📦 Main Branch: Monolithic Architecture
- 👨‍💻 Author: YanWan Team
+  多架构统一鉴权服务        Version: ${application.version:1.0.0}
+  Spring Boot ${spring-boot.version}
+  Main Branch: Monolithic Architecture
+  Author: YanWan Team
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
