@@ -1,53 +1,82 @@
-### Maven ###
+# ==================== Maven ====================
 target/
 !.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-### Gradle ###
-.gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-
-### Java ###
-*.class
-*.jar
-*.war
-*.ear
-*.iml
-*.iws
-*.ipr
-
-### Spring Boot ###
-logs/
-*.log
-*.pid
-*.seed
-*.out
-
-### IntelliJ IDEA ###
+# ==================== IDE ====================
+# IntelliJ IDEA
 .idea/
 *.iws
 *.iml
 *.ipr
 out/
+.idea_modules/
 
-### Eclipse ###
-.project
+# Eclipse
 .classpath
+.project
 .settings/
-bin/
+.metadata/
 
-### VS Code ###
+# VS Code
 .vscode/
+*.code-workspace
 
-### OS files ###
-.DS_Store
+# NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+
+# ==================== 日志文件 ====================
+logs/
+*.log
+*.log.*
+
+# ==================== 临时文件 ====================
+*.tmp
+*.temp
+*.swp
+*.bak
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# ==================== OS ====================
+# Windows
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-### Env ###
-*.env
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# ==================== 其他 ====================
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Spring Boot
+.factorypath
+.springBeans
+
+# 数据库
+*.db
+*.sqlite
+
+# 配置文件（包含敏感信息）
+**/application-local.yml
+**/application-local.properties

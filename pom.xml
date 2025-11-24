@@ -45,6 +45,7 @@
 
         <!-- Maven 插件版本 -->
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
     </properties>
 
     <dependencies>
@@ -180,6 +181,14 @@
     </dependencyManagement>
 
     <build>
+        <!-- 资源文件配置 - 启用资源过滤以替换占位符 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- Maven 编译插件 -->
             <plugin>
@@ -190,6 +199,60 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Git Commit ID 插件 - 从 Git 获取版本信息 -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>4.9.10</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 生成 git.properties 文件 -->
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
+                    </generateGitPropertiesFilename>
+
+                    <!-- 包含的属性 -->
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.build.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.id.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.message.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.time$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.user.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.dirty$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.tags$</includeOnlyProperty>
+                    </includeOnlyProperties>
+
+                    <!-- commit ID 缩写长度 -->
+                    <abbrevLength>7</abbrevLength>
+
+                    <!-- 日期格式 -->
+                    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                    <dateFormatTimeZone>Asia/Shanghai</dateFormatTimeZone>
+
+                    <!-- 如果 .git 目录不存在，不报错 -->
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+
+                    <!-- Git 描述配置 -->
+                    <gitDescribe>
+                        <skip>false</skip>
+                        <always>true</always>
+                        <abbrev>7</abbrev>
+                        <dirty>-dirty</dirty>
+                        <tags>true</tags>
+                    </gitDescribe>
                 </configuration>
             </plugin>
 
@@ -212,6 +275,12 @@
                         <id>repackage</id>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>build-info</goal>
                         </goals>
                     </execution>
                 </executions>
