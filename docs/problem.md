@@ -130,3 +130,22 @@ public class SwaggerConfiguration {
 }
 ```
 
+## MyBatis-Plus 不允许同时配置 configuration 和 configLocation 这两个属性。
+
+### 问题分析
+
+```text
+[D:\project\auth-center\target\classes\com\yanwan\authcenter\controller\UserController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userMapper' defined in file [D:\project\auth-center\target\classes\com\yanwan\authcenter\mapper\UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is java.lang.IllegalStateException: Property 'configuration' and 'configLocation' can not specified with together
+```
+
+1. mybatis-plus.config-location - 指向外部 MyBatis 配置文件
+2. mybatis-plus.configuration - 内联的 MyBatis 配置
+
+> 两者不允许同时存在
+>
+
+### 解决方案
+
+在 `application.yml` 或 `application.properties` 文件中，只配置 `configuration` 或 `configLocation`
+其中一个属性，避免同时配置这两个属性。推荐保留方案: 只使用 configuration（推荐）
+
