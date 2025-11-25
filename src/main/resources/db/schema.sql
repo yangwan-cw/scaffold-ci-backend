@@ -21,3 +21,9 @@ CREATE TABLE IF NOT EXISTS sys_user
     KEY idx_del_flag (del_flag)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='用户主表';
+
+
+INSERT INTO sys_user (username, nickname, avatar, email, status, register_type, create_by, update_by)
+VALUES
+-- 手机号注册用户（10个）
+('zhangsan', '张三', 'https://example.com/avatar/001.jpg', 'zhangsan@example.com', 1, 'PHONE', 'system', 'system');

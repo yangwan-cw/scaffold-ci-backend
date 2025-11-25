@@ -6,6 +6,7 @@ import com.yanwan.authcenter.dto.request.*;
 import com.yanwan.authcenter.dto.response.LoginResponse;
 import com.yanwan.authcenter.dto.response.TokenResponse;
 import com.yanwan.authcenter.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Api(tags = "用户管理接口")  // ← 必须有这个注解
 @RestController("/apis/user")
 @Slf4j
 @AllArgsConstructor
@@ -73,6 +75,12 @@ public class UserController {
         log.info("用户注册: {}", request.getPhone());
         userService.register(request);
         return Result.success();
+    }
+
+    @ApiOperation(value = "用户列表", notes = "分页查询用户列表")
+    @PostMapping("/list")
+    public Result<?> list() {
+        return Result.success(userService.list());
     }
 
     // ==================== 密码相关 ====================

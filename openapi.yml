@@ -61,6 +61,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+
+
 components:
   schemas:
     HelloResponse:
