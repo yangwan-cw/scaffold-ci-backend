@@ -41,6 +41,7 @@ public class CustomBannerPrinter implements ApplicationRunner {
         System.out.println(" " + authCenterProperties.getAppName() + " 启动成功！");
         System.out.println(" " + authCenterProperties.getDescription());
         System.out.println(" Author: " + authCenterProperties.getAuthor());
+        System.out.println(" Druid Monitor:  " + baseUrl + "/druid/");
         System.out.println(" Swagger UI: " + baseUrl + "/doc.html");
         System.out.println(" Health Check: " + baseUrl + "/api/v1/system/health");
         System.out.println(separator);

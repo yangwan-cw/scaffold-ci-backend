@@ -73,6 +73,8 @@ mvn clean package -DskipTests
 java -jar target/auth-cli-1.0.0.jar
 ```
 
+## 开发规范
+
 ## 详细文档
 
 博客: [inspirex-项目](https://your-blog-url.com)

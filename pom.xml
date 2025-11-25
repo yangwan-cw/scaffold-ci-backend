@@ -34,6 +34,11 @@
         <!-- 第三方登录 -->
         <justauth.version>1.16.6</justauth.version>
 
+
+        <!-- HTTP 客户端 -->
+        <forest.version>1.5.36</forest.version>
+
+
         <!-- 工具类 -->
         <hutool.version>5.8.25</hutool.version>
 
@@ -72,6 +77,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Forest HTTP 客户端 -->
+        <dependency>
+            <groupId>com.dtflys.forest</groupId>
+            <artifactId>forest-spring-boot-starter</artifactId>
+            <version>${forest.version}</version>
         </dependency>
 
 
