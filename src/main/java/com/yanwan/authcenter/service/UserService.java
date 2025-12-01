@@ -18,35 +18,6 @@ import javax.validation.Valid;
  */
 public interface UserService extends IService<User> {
 
-    /**
-     * 微信登录
-     * 使用微信授权码进行登录，首次登录自动创建账号
-     *
-     * @param request 微信登录请求，包含授权码和用户信息
-     * @return 登录响应，包含访问令牌、刷新令牌和用户信息
-     * @throws IllegalArgumentException 当授权码无效或微信接口调用失败时
-     */
-    LoginResponse wechatLogin(@Valid WechatLoginRequest request);
-
-    /**
-     * 手机号登录
-     * 使用手机号和验证码进行登录
-     *
-     * @param request 手机号登录请求，包含手机号、验证码和记住密码选项
-     * @return 登录响应，包含访问令牌、刷新令牌和用户信息
-     * @throws IllegalArgumentException 当手机号不存在或验证码错误时
-     */
-    LoginResponse phoneLogin(@Valid PhoneLoginRequest request);
-
-    /**
-     * GitHub 登录
-     * 使用 GitHub 授权码进行登录，首次登录自动创建账号
-     *
-     * @param request GitHub 登录请求，包含授权码和回调地址
-     * @return 登录响应，包含访问令牌、刷新令牌和用户信息
-     * @throws IllegalArgumentException 当授权码无效或 GitHub 接口调用失败时
-     */
-    LoginResponse githubLogin(@Valid GithubLoginRequest request);
 
     /**
      * 自动登录
@@ -136,4 +107,13 @@ public interface UserService extends IService<User> {
      * @return 账户列表对象
      */
     Object getAccountList();
+
+
+    /**
+     * 三方登录
+     *
+     * @param request 三方登录请求类
+     * @return 返回登陆后的结果
+     */
+    LoginResponse thirdLogin(@Valid ThirdLoginRequest request);
 }

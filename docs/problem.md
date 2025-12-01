@@ -149,3 +149,8 @@ public class SwaggerConfiguration {
 在 `application.yml` 或 `application.properties` 文件中，只配置 `configuration` 或 `configLocation`
 其中一个属性，避免同时配置这两个属性。推荐保留方案: 只使用 configuration（推荐）
 
+## 关于用户体系的问题
+
+目前国内的大部分用户体系都和手机号相关联.除此之外还有邮箱账号体系.工号体系等.不同的用户体系在实际应用中会有不同的使用场景.
+
+### 问题分析

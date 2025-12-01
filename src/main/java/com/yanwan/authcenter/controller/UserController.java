@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Api(tags = "用户管理接口")  // ← 必须有这个注解
+@Api(tags = "用户管理接口")
 @RestController("/apis/user")
 @Slf4j
 @AllArgsConstructor
@@ -26,32 +26,12 @@ public class UserController {
 
 
     @ApiOperation(value = "微信登录", notes = "使用微信授权码进行登录")
-    @PostMapping("/login/wechat")
-    public Result<LoginResponse> wechatLogin(
+    @PostMapping("/third/login")
+    public Result<LoginResponse> thirdLogin(
             @ApiParam(value = "微信登录请求", required = true)
-            @Valid @RequestBody WechatLoginRequest request) {
-        log.info("微信登录: {}", request);
-        LoginResponse response = userService.wechatLogin(request);
-        return Result.success(response);
-    }
-
-    @ApiOperation(value = "手机号登录", notes = "使用手机号和验证码进行登录")
-    @PostMapping("/login/phone")
-    public Result<LoginResponse> phoneLogin(
-            @ApiParam(value = "手机号登录请求", required = true)
-            @Valid @RequestBody PhoneLoginRequest request) {
-        log.info("手机号登录: {}", request.getPhone());
-        LoginResponse response = userService.phoneLogin(request);
-        return Result.success(response);
-    }
-
-    @ApiOperation(value = "GitHub登录", notes = "使用GitHub授权码进行登录")
-    @PostMapping("/login/github")
-    public Result<LoginResponse> githubLogin(
-            @ApiParam(value = "GitHub登录请求", required = true)
-            @Valid @RequestBody GithubLoginRequest request) {
-        log.info("GitHub登录: {}", request);
-        LoginResponse response = userService.githubLogin(request);
+            @Valid @RequestBody ThirdLoginRequest request) {
+        log.info("三方登录: {}", request);
+        LoginResponse response = userService.thirdLogin(request);
         return Result.success(response);
     }
 
