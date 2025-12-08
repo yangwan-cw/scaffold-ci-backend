@@ -11,6 +11,51 @@
 | `springboot-3.5-monolith`     | 单体架构     | 3.5.x          | 17+    | 新项目/现代化单体      | 支持最新特性，性能更优         |
 | `springboot-3.5-microservice` | 微服务架构    | 3.5.x          | 17+    | 新项目/现代化微服务     | 最新技术栈，支持虚拟线程等新特性    |
 
+## 模块
+
+1. 用户模块： 核心数据表
+2. 租户模块： 多租户管理
+3. 魔法变量模块： 用于管理系统中的动态变量
+4. 角色模块： 角色和权限管理
+5. 登录日志模块：
+
+多租户指的是: 支持多个租户（客户）在同一系统中独立运行和管理各自的数据和配置。
+
+### 认证系统相关数据表
+
+#### 用户相关
+
+- sys_user：用户基本信息表
+- sys_user_login_log：用户登录日志表
+- sys_user_user_oauth：用户第三方登录关联表
+- sys_user_role：用户角色关联表
+
+#### 角色与权限相关
+
+- sys_role：角色信息表
+- sys_role_permission：角色权限关联表
+- sys_permission：权限信息表
+- sys_user_role: 用户角色关联表
+
+#### 租户相关
+
+- sys_tenant：租户信息表
+- sys_tenant_application：租户应用表
+- sys_tenant_oauth_config: 租户第三方登录配置表
+- sys_tenant_login_config: 租户登录配置表
+
+### 特性
+
+- 支持单体和微服务架构
+- 集成 MySQL 和 Redis
+- 支持多租户
+- 完善的用户和角色管理
+- 丰富的 API 文档（Swagger / Knife4j 支持）
+- 日志记录和审计功能
+- 易于扩展和定制
+- 可拔插三方登录（OAuth2.0）
+- 支持 Spring Boot 2.7.x 和 3.5.x
+
 ## 快速开始
 
 ### 环境要求
